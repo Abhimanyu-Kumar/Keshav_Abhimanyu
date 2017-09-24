@@ -68,12 +68,15 @@ public class CreateCompanyForm extends JInternalFrame {
 	private javax.swing.JButton stex;
 	private javax.swing.JTextField tel;
 	private javax.swing.JTextField tin;
+        private javax.swing.JTextField mobile;
+        private javax.swing.JTextField website;
 	byte[] data=null;
 	// End of variables declaration//GEN-END:variables
 
 	public CreateCompanyForm() {
 		con =  DBConnection.getCon();
 		initComponents();
+                
 		
 		setClosable(true);
         setIconifiable(true);
@@ -122,6 +125,8 @@ public class CreateCompanyForm extends JInternalFrame {
 		exit = new javax.swing.JButton();
 		save = new javax.swing.JButton();
 		jButton1 = new javax.swing.JButton();
+                mobile = new javax.swing.JTextField();
+                website = new javax.swing.JTextField();
 
 		jPanel7.setName("jPanel7"); // NOI18N
 
@@ -259,7 +264,7 @@ public class CreateCompanyForm extends JInternalFrame {
 		jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 		jPanel2.setName("jPanel2"); // NOI18N
 
-		add1.setName("add1"); // NOI18N
+		add1.setName("add1"); // NOI18N54
 		add1.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent evt) {
 				add1KeyReleased(evt);
@@ -603,21 +608,20 @@ public class CreateCompanyForm extends JInternalFrame {
 		try
 		{ 
 			System.out.println("Connection created successfully : "+con.getSchema());
-			pst=con.prepareStatement("insert into company_master values(?,?,?,?,?,?,?,?,?,?,?)");
+			pst=con.prepareStatement("insert into company_master(company_name,company_alias_name,company_add1,company_add2,company_add3,company_telephone,company_mobile,company_website,company_emailid,company_gstno,company_tinno,company_logo_path) values(?,?,?,?,?,?,?,?,?,?,?,?)");
 			System.out.println("Connection Size : "+pst.getFetchSize());
-			pst.setString(1,"1");
-			pst.setString(2,""+name.getText());
-			pst.setString(3,""+aliasName.getText());
-			pst.setString(4,""+add1.getText());
-			pst.setString(5,""+add2.getText());
-			pst.setString(6,""+add3.getText());
-			pst.setString(7,""+tel.getText());
-//			pst.setString(8,""+mobile.getText());
-//			pst.setString(9,""+website.getText());
-			pst.setString(10,""+eid.getText());
-			pst.setString(11,""+gst.getText());
-			pst.setString(12,""+tin.getText());
-			pst.setBytes(13,data);
+			pst.setString(1,""+name.getText());
+			pst.setString(2,""+aliasName.getText());
+			pst.setString(3,""+add1.getText()); 
+			pst.setString(4,""+add2.getText());
+			pst.setString(5,""+add3.getText());
+			pst.setString(6,""+tel.getText());
+			pst.setString(7,""+mobile.getText());
+			pst.setString(8,""+website.getText());
+			pst.setString(9,""+eid.getText());
+			pst.setString(10,""+gst.getText());
+			pst.setString(11,""+tin.getText());
+			pst.setBytes(12,data);
 			System.out.println("Setting values to db : ");
 			save.setEnabled(true);
 			pst.executeUpdate();
@@ -632,10 +636,10 @@ public class CreateCompanyForm extends JInternalFrame {
 			add3.setText("");
 			eid.setText("");
 			gst.setText("");
-
+                        mobile.setText("");
+                        website.setText("");
 			tel.setText("");
 			tin.setText("");
-			stex.setText("");
 			con.close();
 
 			
@@ -856,7 +860,7 @@ public class CreateCompanyForm extends JInternalFrame {
 		class ImageFilter1 extends javax.swing.filechooser.FileFilter {
 			public boolean accept(File f) {
 				return f.getName().toLowerCase().endsWith(".png") || f.getName().toLowerCase().endsWith(".jpg")
-						|| f.getName().toLowerCase().endsWith(".jif") || f.isDirectory();
+						|| f.getName().toLowerCase().endsWith(".gif") || f.isDirectory();
 			}
 
 			@Override
