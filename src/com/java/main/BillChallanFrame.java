@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -305,6 +308,11 @@ public class BillChallanFrame extends javax.swing.JInternalFrame {
         addProductBtn.setBackground(new java.awt.Color(51, 51, 255));
         addProductBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         addProductBtn.setText("Add");
+        addProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductBtnActionPerformed(evt);
+            }
+        });
 
         pLabel1.setText("P1");
 
@@ -628,7 +636,6 @@ public class BillChallanFrame extends javax.swing.JInternalFrame {
             System.out.println("Connection created successfully : "+con.getSchema());
      pst=con.prepareStatement("insert into bill_challan_master(order_no,challan_date,name,address_line1,address_line2,telephone,sender_message,sender_details,thank_you_message) values(?,?,?,?,?,?,?,?,?)");
      System.out.println("Connection Size : "+pst.getFetchSize());
-//     pst.setInt(1,1);
      pst.setString(1,""+orderNoTextField.getText());
      pst.setString(2,""+"09-09-2017");
      pst.setString(3,""+nameTextField.getText());
@@ -708,6 +715,15 @@ public class BillChallanFrame extends javax.swing.JInternalFrame {
     private void addressLine2TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressLine2TextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addressLine2TextFieldActionPerformed
+
+    private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
+        // TODO add your handling code here:
+        
+        List list = new ArrayList();
+        
+        
+       
+    }//GEN-LAST:event_addProductBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

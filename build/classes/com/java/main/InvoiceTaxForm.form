@@ -46,29 +46,32 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
-                              <Component id="headerTitlePanel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="705" max="-2" attributes="0"/>
-                              <Component id="taxCalculationPanel" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="headerTitlePanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="footerPanel1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="footerPanel1" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="deliveryDetailsPanel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="taxDetailsPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="deliveryDetailsPanel" max="32767" attributes="0"/>
+                                  <Component id="taxDetailsPanel2" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="taxCalculationPanel" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                              <Component id="saveInvoiceBtn" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -80,9 +83,12 @@
                       <Component id="taxDetailsPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="deliveryDetailsPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="taxCalculationPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="taxCalculationPanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="saveInvoiceBtn" min="-2" pref="41" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="footerPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="35" max="32767" attributes="0"/>
                   </Group>
@@ -192,34 +198,37 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="gstInValue" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                              <Component id="taxComboOption" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="invoiceSeriaValue" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="taxComboOption" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="invoiceSeriaValue" linkSize="7" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="gstInValue" linkSize="7" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="56" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="transportModeLabel" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="transportModeLabel" linkSize="5" min="-2" pref="140" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="placeSupplyLabel" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                              <Component id="vehicleNoLabel" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Component id="placeSupplyLabel" linkSize="5" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                              <Component id="vehicleNoLabel" linkSize="5" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="vehicleNoValue" min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="transportModeValue" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="supplyPlaceValue" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="transportModeValue" pref="241" max="32767" attributes="0"/>
+                              <Component id="vehicleNoValue" alignment="0" max="32767" attributes="0"/>
+                              <Component id="supplyPlaceValue" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="gstInLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gstInValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -234,15 +243,13 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="gstInLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="gstInValue" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="transportModeLabel" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                       <Component id="transportModeValue" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="vehicleNoValue" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                           <Component id="vehicleNoLabel" min="-2" pref="19" max="-2" attributes="0"/>
                                       </Group>
@@ -250,14 +257,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="supplyPlaceValue" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="placeSupplyLabel" pref="22" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="placeSupplyLabel" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -387,9 +391,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="productTableScroll" max="32767" attributes="0"/>
-                              <Component id="AddProductPanel" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -397,12 +399,12 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="receiverAddressLabel" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="receiverAddressvalue" min="-2" pref="415" max="-2" attributes="0"/>
+                                                  <Component id="receiverAddressvalue" linkSize="3" min="-2" pref="415" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="receiverNameLabel" min="-2" pref="111" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="receiverNameValue" min="-2" pref="415" max="-2" attributes="0"/>
+                                                  <Component id="receiverNameValue" linkSize="3" min="-2" pref="415" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -412,9 +414,9 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="receiverMobileValue" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="receiverEmailValue" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="receiverStateValue" alignment="0" min="-2" pref="415" max="-2" attributes="0"/>
+                                                  <Component id="receiverMobileValue" linkSize="3" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="receiverEmailValue" linkSize="3" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="receiverStateValue" linkSize="3" alignment="0" min="-2" pref="415" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="recieverDetailsLabel" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
@@ -423,58 +425,47 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="receiverGSTLabel" min="-2" pref="104" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="receiverGSTValue" min="-2" pref="417" max="-2" attributes="0"/>
+                                          <Component id="receiverGSTValue" linkSize="3" min="-2" pref="417" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="consigneeEmailLabel" min="-2" pref="86" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="consigneeGSTLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                  <Component id="consigneeEmailValue" min="-2" pref="398" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="consigneeGSTValue" min="-2" pref="398" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Component id="consigneeDetailsLabel" alignment="0" min="-2" pref="254" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="consigneelabel" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
-                                              <Component id="consigneeAddressLabel" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="consigneeNamevalue" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="consigneeAddressValue" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="consigneeMobilelabel" alignment="1" pref="105" max="32767" attributes="0"/>
+                                      <Component id="consigneeStateLabel" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="consigneeMobilelabel" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                              <Component id="consigneeMobileValue" min="-2" pref="398" max="-2" attributes="0"/>
+                                              <Component id="consigneeEmailLabel" min="-2" pref="86" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="consigneeStateLabel" min="-2" pref="104" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="consigneeStatevalue" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="consigneeGSTLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="consigneelabel" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <Component id="consigneeAddressLabel" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="consigneeEmailValue" linkSize="1" alignment="0" min="-2" pref="398" max="-2" attributes="0"/>
+                                      <Component id="consigneeMobileValue" linkSize="1" alignment="0" min="-2" pref="398" max="-2" attributes="0"/>
+                                      <Component id="consigneeGSTValue" linkSize="1" alignment="0" min="-2" pref="398" max="-2" attributes="0"/>
+                                      <Component id="consigneeStatevalue" linkSize="1" alignment="0" min="-2" pref="402" max="-2" attributes="0"/>
+                                      <Component id="consigneeAddressValue" linkSize="1" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                                      <Component id="consigneeNamevalue" linkSize="1" alignment="0" min="-2" pref="402" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="560" pref="560" max="-2" attributes="0"/>
+                                  <Component id="consigneeDetailsLabel" min="-2" pref="254" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="productTableScroll" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="AddProductPanel" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -488,11 +479,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="receiverNameLabel" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="receiverNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverNameValue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="receiverAddressvalue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverAddressvalue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="receiverAddressLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -502,11 +493,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="consigneelabel" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="consigneeNamevalue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="consigneeNamevalue" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="consigneeAddressValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="consigneeAddressValue" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="consigneeAddressLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -515,22 +506,22 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="receiverStateValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverStateValue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="receiverStatelabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="receiverMobileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="receiverMobileValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverMobileValue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="receiverEmailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="receiverEmailValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverEmailValue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="receiverGSTValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="receiverGSTValue" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="receiverGSTLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -538,25 +529,22 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="consigneeStateLabel" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="consigneeStatevalue" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="consigneeStatevalue" linkSize="2" min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="consigneeMobileValue" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="consigneeMobilelabel" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="consigneeMobilelabel" alignment="3" pref="28" max="32767" attributes="0"/>
+                                      <Component id="consigneeMobileValue" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="consigneeEmailValue" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="consigneeEmailValue" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="consigneeEmailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="consigneeGSTLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="consigneeGSTValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="consigneeGSTValue" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
@@ -808,83 +796,70 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="productNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="productName" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
+                                  <Component id="productList" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="productHSNCodeLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="productHsnCodeValue" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="productHSNCodeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productHsnCodeValue" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="productQuantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="productyQuantityValue" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Component id="productQuantityLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productyQuantityValue" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="productRateValue" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                                   <Component id="productRateLabel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="productRateValue" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="productGstValue" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="addProductButton" min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="productGstLabel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                          <Component id="productRateLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="productyQuantityValue" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                                  <Component id="productRateValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="addProductButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="productGstLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="productGstValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="addProductButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="productQuantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="productHSNCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="productQuantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="productNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="productHSNCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="productRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="productList" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="productHsnCodeValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="productName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="productyQuantityValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="productRateValue" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="productNameLabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="15" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Product Name "/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="productName">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="15" style="0"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="productHSNCodeLabel">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -947,6 +922,47 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProductButtonActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="productNameLabel">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Semibold" size="15" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Product Name"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="productList">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI Light" size="15" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Cake"/>
+                            <StringItem index="1" value="Chocolate"/>
+                            <StringItem index="2" value="Flower"/>
+                            <StringItem index="3" value="Gift Items"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="productGstLabel">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="15" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="GST %"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="productGstValue">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="15" style="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="productTableScroll">
@@ -961,13 +977,16 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="dtm" type="code"/>
                         </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0"/>
+                        </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="dtm=new javax.swing.table.DefaultTableModel();&#xa;&#xa;String[] headers=         new String [] {&#xa;&quot;Product Name&quot;, &quot;HSN Code&quot;, &quot;Quantity&quot;, &quot;Rate&quot;,&quot;Total&quot;&#xa;};&#xa;dtm.setColumnIdentifiers(headers);&#xa;productTable.setModel(dtm);&#xa;if (productTable.getColumnModel().getColumnCount() &gt; 0) {&#xa;productTable.getColumnModel().getColumn(0).setResizable(false);&#xa;productTable.getColumnModel().getColumn(1).setResizable(false);&#xa;productTable.getColumnModel().getColumn(2).setResizable(false);&#xa;productTable.getColumnModel().getColumn(3).setResizable(false);&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="dtm=new javax.swing.table.DefaultTableModel();&#xa;&#xa;String[] headers=         new String [] {&#xa;&quot;Product Name&quot;, &quot;HSN Code&quot;, &quot;Quantity&quot; ,&quot;Rate&quot;,&quot;Gst&quot;,&quot;Total&quot;&#xa;};&#xa;dtm.setColumnIdentifiers(headers);&#xa;productTable.setModel(dtm);&#xa;if (productTable.getColumnModel().getColumnCount() &gt; 0) {&#xa;productTable.getColumnModel().getColumn(0).setResizable(false);&#xa;productTable.getColumnModel().getColumn(1).setResizable(false);&#xa;productTable.getColumnModel().getColumn(2).setResizable(false);&#xa;productTable.getColumnModel().getColumn(3).setResizable(false);&#xa;productTable.getColumnModel().getColumn(4).setResizable(false);&#xa;}"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -997,7 +1016,7 @@
                               <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel19" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="225" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1306,6 +1325,20 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="saveInvoiceBtn">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Black" size="15" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="33" red="33" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Save"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveInvoiceBtnActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

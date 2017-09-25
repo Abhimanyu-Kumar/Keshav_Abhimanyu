@@ -5,8 +5,13 @@
  */
 package com.java.main;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +23,12 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     /**
      * Creates new form TaxInvoiceInternal
      */
+    Statement st;
+    Connection con=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
     public InvoiceTaxForm() {
+        con =  DBConnection.getCon();
         initComponents();
         setResizable(false);
         setClosable(true);
@@ -83,8 +93,6 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         receiverGSTValue = new javax.swing.JTextField();
         consigneeGSTValue = new javax.swing.JTextField();
         AddProductPanel = new javax.swing.JPanel();
-        productNameLabel = new javax.swing.JLabel();
-        productName = new javax.swing.JTextField();
         productHSNCodeLabel = new javax.swing.JLabel();
         productHsnCodeValue = new javax.swing.JTextField();
         productRateLabel = new javax.swing.JLabel();
@@ -92,6 +100,10 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         productRateValue = new javax.swing.JTextField();
         productQuantityLabel = new javax.swing.JLabel();
         addProductButton = new javax.swing.JButton();
+        productNameLabel = new javax.swing.JLabel();
+        productList = new javax.swing.JComboBox<>();
+        productGstLabel = new javax.swing.JLabel();
+        productGstValue = new javax.swing.JTextField();
         productTableScroll = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         footerPanel1 = new javax.swing.JPanel();
@@ -123,6 +135,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         cgstTextField = new javax.swing.JTextField();
         SGSTTextField = new javax.swing.JTextField();
         IGSTTextField = new javax.swing.JTextField();
+        saveInvoiceBtn = new javax.swing.JButton();
 
         taxDetailsPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -237,28 +250,35 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                     .addComponent(invoiceSerialLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gstInValue, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taxComboOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(invoiceSeriaValue, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                    .addComponent(taxComboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invoiceSeriaValue, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gstInValue, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(taxDetailsPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(transportModeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(placeSupplyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vehicleNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(104, 104, 104)
-                .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vehicleNoValue, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(transportModeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supplyPlaceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(164, 164, 164))
+                .addGap(27, 27, 27)
+                .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(transportModeValue, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(vehicleNoValue)
+                    .addComponent(supplyPlaceValue))
+                .addGap(97, 97, 97))
         );
+
+        taxDetailsPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {placeSupplyLabel, transportModeLabel, vehicleNoLabel});
+
+        taxDetailsPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {gstInValue, invoiceSeriaValue});
+
         taxDetailsPanel2Layout.setVerticalGroup(
             taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(taxDetailsPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(gstInLabel)
+                        .addComponent(gstInValue))
                     .addGroup(taxDetailsPanel2Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,8 +290,6 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                             .addComponent(invoiceSerialLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(taxDetailsPanel2Layout.createSequentialGroup()
                         .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gstInLabel)
-                            .addComponent(gstInValue)
                             .addComponent(transportModeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(transportModeValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -283,10 +301,8 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(taxDetailsPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(supplyPlaceValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(taxDetailsPanel2Layout.createSequentialGroup()
-                                .addComponent(placeSupplyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                                .addGap(7, 7, 7)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                            .addComponent(placeSupplyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         deliveryDetailsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -399,11 +415,6 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
 
         AddProductPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        productNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        productNameLabel.setText("Product Name ");
-
-        productName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-
         productHSNCodeLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         productHSNCodeLabel.setText("HSN Code ");
 
@@ -433,6 +444,17 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
             }
         });
 
+        productNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        productNameLabel.setText("Product Name");
+
+        productList.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
+        productList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cake", "Chocolate", "Flower", "Gift Items" }));
+
+        productGstLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        productGstLabel.setText("GST %");
+
+        productGstValue.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout AddProductPanelLayout = new javax.swing.GroupLayout(AddProductPanel);
         AddProductPanel.setLayout(AddProductPanelLayout);
         AddProductPanelLayout.setHorizontalGroup(
@@ -441,54 +463,57 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productNameLabel)
-                    .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(productList, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productHSNCodeLabel)
                     .addComponent(productHsnCodeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productQuantityLabel)
-                    .addComponent(productyQuantityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(productyQuantityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(productRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productRateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddProductPanelLayout.createSequentialGroup()
-                        .addComponent(productRateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(productGstValue, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productGstLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         AddProductPanelLayout.setVerticalGroup(
             AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddProductPanelLayout.createSequentialGroup()
                 .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(AddProductPanelLayout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(productRateLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(productyQuantityValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(productRateValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addProductButton))))
-                        .addComponent(productQuantityLabel))
                     .addGroup(AddProductPanelLayout.createSequentialGroup()
-                        .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(productHSNCodeLabel)
-                            .addComponent(productNameLabel))
+                        .addComponent(productGstLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productGstValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addProductButton)))
+                    .addGroup(AddProductPanelLayout.createSequentialGroup()
+                        .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productQuantityLabel)
+                            .addComponent(productNameLabel)
+                            .addComponent(productHSNCodeLabel)
+                            .addComponent(productRateLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(AddProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(productHsnCodeValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(productyQuantityValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productRateValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         dtm=new javax.swing.table.DefaultTableModel();
 
         String[] headers=         new String [] {
-            "Product Name", "HSN Code", "Quantity", "Rate","Total"
+            "Product Name", "HSN Code", "Quantity" ,"Rate","Gst","Total"
         };
         dtm.setColumnIdentifiers(headers);
         productTable.setModel(dtm);
@@ -497,6 +522,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
             productTable.getColumnModel().getColumn(1).setResizable(false);
             productTable.getColumnModel().getColumn(2).setResizable(false);
             productTable.getColumnModel().getColumn(3).setResizable(false);
+            productTable.getColumnModel().getColumn(4).setResizable(false);
         }
         productTable.setModel(dtm);
         productTableScroll.setViewportView(productTable);
@@ -507,10 +533,8 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
             deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(productTableScroll)
-                    .addComponent(AddProductPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -539,39 +563,39 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                                 .addComponent(receiverGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                        .addComponent(consigneeEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15))
-                                    .addComponent(consigneeGSTLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(consigneeGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(consigneeDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(consigneelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(consigneeAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
-                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(consigneeNamevalue)
-                                    .addComponent(consigneeAddressValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                    .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(25, 25, 25)
-                                    .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                    .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(consigneeStatevalue))))))
-                .addGap(4, 4, 4))
+                                    .addComponent(consigneeEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(15, 15, 15))
+                                .addComponent(consigneeGSTLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(consigneelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeStatevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeAddressValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consigneeNamevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5))
+                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                        .addGap(560, 560, 560)
+                        .addComponent(consigneeDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(productTableScroll, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(4, 4, 4))))
         );
+
+        deliveryDetailsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {consigneeAddressValue, consigneeEmailValue, consigneeGSTValue, consigneeMobileValue, consigneeNamevalue, consigneeStatevalue});
+
+        deliveryDetailsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {receiverAddressvalue, receiverEmailValue, receiverGSTValue, receiverMobileValue, receiverNameValue, receiverStateValue});
+
         deliveryDetailsPanelLayout.setVerticalGroup(
             deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
@@ -622,11 +646,9 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                             .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(consigneeStatevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3))
-                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -641,6 +663,10 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                 .addComponent(productTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        deliveryDetailsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {consigneeAddressValue, consigneeEmailValue, consigneeGSTValue, consigneeMobileValue, consigneeNamevalue, consigneeStatevalue});
+
+        deliveryDetailsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {receiverAddressvalue, receiverEmailValue, receiverGSTValue, receiverMobileValue, receiverNameValue, receiverStateValue});
 
         footerPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -684,7 +710,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(footerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, footerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel25)
@@ -849,28 +875,40 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                     .addComponent(grandTotalValueLabel)))
         );
 
+        saveInvoiceBtn.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
+        saveInvoiceBtn.setForeground(new java.awt.Color(51, 51, 255));
+        saveInvoiceBtn.setText("Save");
+        saveInvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveInvoiceBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout taxDetailsPanel1Layout = new javax.swing.GroupLayout(taxDetailsPanel1);
         taxDetailsPanel1.setLayout(taxDetailsPanel1Layout);
         taxDetailsPanel1Layout.setHorizontalGroup(
             taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(taxDetailsPanel1Layout.createSequentialGroup()
-                .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(taxDetailsPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(headerTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(taxDetailsPanel1Layout.createSequentialGroup()
-                        .addGap(705, 705, 705)
-                        .addComponent(taxCalculationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(187, 187, 187)
+                .addComponent(headerTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
+            .addGroup(taxDetailsPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(footerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deliveryDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taxDetailsPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
+                        .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(deliveryDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taxDetailsPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
+                        .addComponent(taxCalculationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(saveInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         taxDetailsPanel1Layout.setVerticalGroup(
             taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -880,9 +918,11 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                 .addComponent(taxDetailsPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deliveryDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(taxCalculationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(taxCalculationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addComponent(footerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -950,13 +990,49 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
         // TODO add your handling code here:
         Vector<Object> data = new Vector<Object>();
-        data.add(productName.getText());
+        String productName = String.valueOf(productList.getSelectedItem());
+        float total = Integer.parseInt(productyQuantityValue.getText()) * Integer.parseInt(productRateValue.getText());
+        float gstCalculate = total * Integer.parseInt(productGstValue.getText()) / 100;
+        float finalTotal = total + gstCalculate;
+        data.add(productName);
         data.add(productHsnCodeValue.getText());
+        data.add(productGstValue.getText());
         data.add(productyQuantityValue.getText());
         data.add(productRateValue.getText());
-        int total = Integer.parseInt(productyQuantityValue.getText()) * Integer.parseInt(productRateValue.getText());
-        data.add(total);
+        data.add(finalTotal);
         dtm.addRow(data);
+        
+//        For saving data into product_master
+ try
+    { 
+     System.out.println("Connection created successfully : "+con.getSchema());
+     pst=con.prepareStatement("insert into product_master(product_name,hsn_code,product_quantity,product_rate,gst) values(?,?,?,?,?)");
+     System.out.println("Connection Size : "+pst.getFetchSize());
+     pst.setString(1,""+productList.getSelectedItem());
+     pst.setString(2,""+productHsnCodeValue.getText());
+     pst.setInt(3, Integer.parseInt(productyQuantityValue.getText()));
+     pst.setInt(4,Integer.parseInt(productRateValue.getText()));
+     pst.setInt(5,Integer.parseInt(productGstValue.getText()));
+     
+
+     System.out.println("Setting values to db : ");
+     addProductButton.setEnabled(true);
+     pst.executeUpdate();
+     System.out.println("Executed successfully");
+     JOptionPane.showMessageDialog(null, "Record Inserted Sucessfully...."); 
+     new InvoiceTaxForm();
+     productHsnCodeValue.setText("");
+     productyQuantityValue.setText("");
+     productRateValue.setText("");
+     productGstValue.setText("");
+     con.close();
+
+        }                                    
+        catch(Exception ex)
+        {
+            System.out.println("Exception : "+ex);
+        }
+        
     }//GEN-LAST:event_addProductButtonActionPerformed
 
     private void cgstTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cgstTextFieldActionPerformed
@@ -970,6 +1046,39 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private void IGSTTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IGSTTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IGSTTextFieldActionPerformed
+
+    private void saveInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInvoiceBtnActionPerformed
+        // TODO add your handling code here:
+        try
+    { 
+     System.out.println("Connection created successfully : "+con.getSchema());
+     pst=con.prepareStatement("insert into product_master(product_name,hsn_code,product_quantity,product_rate,gst) values(?,?,?,?,?)");
+     System.out.println("Connection Size : "+pst.getFetchSize());
+     pst.setString(1,""+productList.getSelectedItem());
+     pst.setString(2,""+productHsnCodeValue.getText());
+     pst.setInt(3, Integer.parseInt(productyQuantityValue.getText()));
+     pst.setInt(4,Integer.parseInt(productRateValue.getText()));
+     pst.setInt(5,Integer.parseInt(productGstValue.getText()));
+     
+
+     System.out.println("Setting values to db : ");
+     addProductButton.setEnabled(true);
+     pst.executeUpdate();
+     System.out.println("Executed successfully");
+     JOptionPane.showMessageDialog(null, "Record Inserted Sucessfully...."); 
+     new InvoiceTaxForm();
+     productHsnCodeValue.setText("");
+     productyQuantityValue.setText("");
+     productRateValue.setText("");
+     productGstValue.setText("");
+     con.close();
+
+        }                                    
+        catch(Exception ex)
+        {
+            System.out.println("Exception : "+ex);
+        }
+    }//GEN-LAST:event_saveInvoiceBtnActionPerformed
 
     private DefaultTableModel dtm;  
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1026,9 +1135,11 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mobileLable;
     private javax.swing.JLabel placeSupplyLabel;
+    private javax.swing.JLabel productGstLabel;
+    private javax.swing.JTextField productGstValue;
     private javax.swing.JLabel productHSNCodeLabel;
     private javax.swing.JTextField productHsnCodeValue;
-    private javax.swing.JTextField productName;
+    private javax.swing.JComboBox<String> productList;
     private javax.swing.JLabel productNameLabel;
     private javax.swing.JLabel productQuantityLabel;
     private javax.swing.JLabel productRateLabel;
@@ -1049,6 +1160,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField receiverStateValue;
     private javax.swing.JLabel receiverStatelabel;
     private javax.swing.JLabel recieverDetailsLabel;
+    private javax.swing.JButton saveInvoiceBtn;
     private javax.swing.JTextField supplyPlaceValue;
     private javax.swing.JPanel taxCalculationPanel;
     private javax.swing.JLabel taxChargeLabel;
