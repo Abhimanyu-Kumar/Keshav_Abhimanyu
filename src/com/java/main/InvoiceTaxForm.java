@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Abhi
  */
-public class InvoiceTaxForm extends javax.swing.JInternalFrame {
+public class InvoiceTaxForm extends javax.swing.JInternalFrame {   
 
     /**
      * Creates new form TaxInvoiceInternal
@@ -106,6 +108,12 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         productGstValue = new javax.swing.JTextField();
         productTableScroll = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
+        receivermobileNoSearchTextField = new javax.swing.JTextField();
+        receiverSearchCustomerBtn = new javax.swing.JButton();
+        SearchMobileLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        consigneeMobileSearchTextField = new javax.swing.JTextField();
+        consigneeSearchCustomerBtn = new javax.swing.JButton();
         footerPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -527,69 +535,111 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         productTable.setModel(dtm);
         productTableScroll.setViewportView(productTable);
 
+        receivermobileNoSearchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receivermobileNoSearchTextFieldActionPerformed(evt);
+            }
+        });
+
+        receiverSearchCustomerBtn.setText("Search Customer");
+        receiverSearchCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receiverSearchCustomerBtnActionPerformed(evt);
+            }
+        });
+
+        SearchMobileLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        SearchMobileLabel.setText("Mobile No :");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel1.setText("Mobile");
+
+        consigneeMobileSearchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consigneeMobileSearchTextFieldActionPerformed(evt);
+            }
+        });
+
+        consigneeSearchCustomerBtn.setText("Search Customer");
+        consigneeSearchCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consigneeSearchCustomerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout deliveryDetailsPanelLayout = new javax.swing.GroupLayout(deliveryDetailsPanel);
         deliveryDetailsPanel.setLayout(deliveryDetailsPanelLayout);
         deliveryDetailsPanelLayout.setHorizontalGroup(
             deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
+            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, deliveryDetailsPanelLayout.createSequentialGroup()
-                                        .addComponent(receiverAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(receiverAddressvalue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, deliveryDetailsPanelLayout.createSequentialGroup()
-                                        .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(receiverNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                    .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(receiverStatelabel)
-                                        .addComponent(receiverMobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(receiverMobileValue)
-                                        .addComponent(receiverEmailValue)
-                                        .addComponent(receiverStateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(recieverDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(receiverEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                .addComponent(receiverGSTLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(receiverGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(27, 27, 27)
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                                    .addComponent(consigneeEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(15, 15, 15))
-                                .addComponent(consigneeGSTLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(consigneelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeStatevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeAddressValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeNamevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5))
+                        .addComponent(productTableScroll)
+                        .addGap(4, 4, 4))
+                    .addComponent(AddProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                        .addGap(560, 560, 560)
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(receiverAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SearchMobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(receiverEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(receiverStatelabel)
+                                    .addComponent(receiverMobileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
+                                .addComponent(receiverGSTLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(receiverNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receiverAddressvalue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receiverStateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(receiverMobileValue)
+                            .addComponent(receiverEmailValue)
+                            .addComponent(receiverGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                    .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                                            .addComponent(consigneeEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(15, 15, 15))
+                                        .addComponent(consigneeGSTLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(consigneelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(consigneeNamevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeAddressValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeStatevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(consigneeGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(consigneeMobileSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(consigneeSearchCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
+                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(recieverDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(312, 312, 312)
                         .addComponent(consigneeDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(productTableScroll, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(4, 4, 4))))
+                    .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(receivermobileNoSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(receiverSearchCustomerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(552, 552, 552))))
         );
 
         deliveryDetailsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {consigneeAddressValue, consigneeEmailValue, consigneeGSTValue, consigneeMobileValue, consigneeNamevalue, consigneeStatevalue});
@@ -599,11 +649,22 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         deliveryDetailsPanelLayout.setVerticalGroup(
             deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consigneeDetailsLabel)
+                    .addComponent(recieverDetailsLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(receivermobileNoSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(receiverSearchCustomerBtn)
+                    .addComponent(SearchMobileLabel)
+                    .addComponent(jLabel1)
+                    .addComponent(consigneeMobileSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consigneeSearchCustomerBtn))
+                .addGap(10, 10, 10)
                 .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(recieverDetailsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(1, 1, 1)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(receiverNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -612,9 +673,6 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                             .addComponent(receiverAddressvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(receiverAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(consigneeDetailsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(consigneelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(consigneeNamevalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -632,35 +690,36 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(receiverMobileLabel)
                             .addComponent(receiverMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(receiverEmailLabel)
-                            .addComponent(receiverEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(receiverGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(receiverGSTLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(receiverEmailLabel)
+                        .addGap(13, 13, 13)
+                        .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(receiverGSTLabel)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deliveryDetailsPanelLayout.createSequentialGroup()
+                                .addComponent(receiverGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                     .addGroup(deliveryDetailsPanelLayout.createSequentialGroup()
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(consigneeStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(consigneeStatevalue, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(consigneeMobilelabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(consigneeMobileValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(consigneeEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consigneeEmailLabel))
+                            .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(consigneeEmailLabel)
+                                .addComponent(receiverEmailValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(deliveryDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(consigneeGSTLabel)
                             .addComponent(consigneeGSTValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)))
+                        .addGap(6, 6, 6)))
                 .addComponent(AddProductPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(productTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(productTableScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -761,25 +820,25 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
 
         freightLabel.setText("Freight");
 
-        freighValueLabel.setText("0");
+        freighValueLabel.setText("  ");
 
         totalLabel.setText("Total");
 
-        totalValueLabel.setText("0");
+        totalValueLabel.setText("  ");
 
-        CGSTValueLabel.setText("0");
+        CGSTValueLabel.setText("  ");
 
         CGSTLabel.setText("CGST @ ... %");
 
-        SGSTValueLabel.setText("0");
+        SGSTValueLabel.setText("  ");
 
         SGSTLabel.setText("SGST @ ... %");
 
-        IGSTValueLabel.setText("0");
+        IGSTValueLabel.setText("  ");
 
         IGSTLabel.setText("IGST @ ... %");
 
-        grandTotalValueLabel.setText("0");
+        grandTotalValueLabel.setText("  ");
 
         grandTotalLabel.setText("Grand Total");
 
@@ -825,24 +884,16 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                             .addComponent(freightLabel)
                             .addComponent(totalLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(taxCalculationPanelLayout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(SGSTValueLabel))
-                        .addGroup(taxCalculationPanelLayout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(CGSTValueLabel))
-                        .addGroup(taxCalculationPanelLayout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(freighValueLabel))
-                        .addGroup(taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(grandTotalValueLabel)
-                            .addComponent(IGSTValueLabel)))
+                .addGroup(taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SGSTValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(taxCalculationPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(totalValueLabel)))
-                .addGap(47, 47, 47))
+                        .addGroup(taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(freighValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CGSTValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(IGSTValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(grandTotalValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         taxCalculationPanelLayout.setVerticalGroup(
             taxCalculationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -906,7 +957,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taxDetailsPanel1Layout.createSequentialGroup()
                         .addComponent(taxCalculationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126)
+                        .addGap(146, 146, 146)
                         .addComponent(saveInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57))))
         );
@@ -922,9 +973,9 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
                 .addGroup(taxDetailsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(taxCalculationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
                 .addComponent(footerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(taxDetailsPanel1);
@@ -937,7 +988,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -986,22 +1037,33 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private void productyQuantityValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productyQuantityValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productyQuantityValueActionPerformed
-
+        double totalTax = 0;
+        double grandTotal = 0;
+        double halfTax = 0;
+        double finalGst = 0;  
+        double taxSum = 0;
     private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
         // TODO add your handling code here:
-        Vector<Object> data = new Vector<Object>();
+        Vector<Object> data = new Vector<Object>();   
+        
         String productName = String.valueOf(productList.getSelectedItem());
-        float total = Integer.parseInt(productyQuantityValue.getText()) * Integer.parseInt(productRateValue.getText());
-        float gstCalculate = total * Integer.parseInt(productGstValue.getText()) / 100;
-        float finalTotal = total + gstCalculate;
+        double total = Integer.parseInt(productyQuantityValue.getText()) * Integer.parseInt(productRateValue.getText());
+        double gstCalculate = total * Double.parseDouble(productGstValue.getText()) / 100;
+        double finalTotal = total + gstCalculate;
         data.add(productName);
         data.add(productHsnCodeValue.getText());
         data.add(productGstValue.getText());
         data.add(productyQuantityValue.getText());
         data.add(productRateValue.getText());
         data.add(finalTotal);
+        totalTax = finalGst + Double.parseDouble(productGstValue.getText());
+        halfTax = totalTax/2;
+        taxSum = taxSum + halfTax ;
+        grandTotal = grandTotal + finalTotal;        
         dtm.addRow(data);
-        
+        CGSTValueLabel.setText(String.valueOf(taxSum));
+        SGSTValueLabel.setText(String.valueOf(taxSum));
+        grandTotalValueLabel.setText(String.valueOf(grandTotal));
 //        For saving data into product_master
  try
     { 
@@ -1013,13 +1075,16 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
      pst.setInt(3, Integer.parseInt(productyQuantityValue.getText()));
      pst.setInt(4,Integer.parseInt(productRateValue.getText()));
      pst.setInt(5,Integer.parseInt(productGstValue.getText()));
-     
+     List list = new ArrayList();
+     list.add(productList.getSelectedItem());
 
      System.out.println("Setting values to db : ");
      addProductButton.setEnabled(true);
      pst.executeUpdate();
      System.out.println("Executed successfully");
-     JOptionPane.showMessageDialog(null, "Record Inserted Sucessfully...."); 
+     JOptionPane.showMessageDialog(null, "Product Added Sucessfully...."); 
+//     if(list.contains(productList.getSelectedItem()));
+//        JOptionPane.showMessageDialog(null, "Duplicate Product Found ...."); 
      new InvoiceTaxForm();
      productHsnCodeValue.setText("");
      productyQuantityValue.setText("");
@@ -1049,16 +1114,17 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
 
     private void saveInvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInvoiceBtnActionPerformed
         // TODO add your handling code here:
+        int count = 1;
         try
     { 
      System.out.println("Connection created successfully : "+con.getSchema());
-     pst=con.prepareStatement("insert into product_master(product_name,hsn_code,product_quantity,product_rate,gst) values(?,?,?,?,?)");
+     pst=con.prepareStatement("insert into invoice_master(invoice_id,hsn_code,product_quantity,product_rate,gst) values(?,?,?,?,?)");
      System.out.println("Connection Size : "+pst.getFetchSize());
-     pst.setString(1,""+productList.getSelectedItem());
-     pst.setString(2,""+productHsnCodeValue.getText());
-     pst.setInt(3, Integer.parseInt(productyQuantityValue.getText()));
-     pst.setInt(4,Integer.parseInt(productRateValue.getText()));
-     pst.setInt(5,Integer.parseInt(productGstValue.getText()));
+     pst.setString(count,""+productList.getSelectedItem());
+     pst.setString(count++,""+productHsnCodeValue.getText());
+     pst.setInt(count++, Integer.parseInt(productyQuantityValue.getText()));
+     pst.setInt(count++,Integer.parseInt(productRateValue.getText()));
+     pst.setInt(count++,Integer.parseInt(productGstValue.getText()));
      
 
      System.out.println("Setting values to db : ");
@@ -1080,6 +1146,81 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_saveInvoiceBtnActionPerformed
 
+    private void receivermobileNoSearchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivermobileNoSearchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_receivermobileNoSearchTextFieldActionPerformed
+
+    public void populayteCustomer(int mobile_no){
+        
+    }
+    private void receiverSearchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiverSearchCustomerBtnActionPerformed
+        // TODO add your handling code here:con =  DBConnection.getCon();
+        try{
+            String query  = "select * from customer_master where customer_mobileno = ?";
+            con =  DBConnection.getCon();
+            pst  = con.prepareStatement(query);
+            pst.setString(1,receivermobileNoSearchTextField.getText());
+            rs = pst.executeQuery();
+        
+            // loop through the result set
+            while (rs.next() && rs!=null) {
+                System.out.println(rs.getInt("customer_no") +  "\t" + 
+                                   rs.getString("customer_name") + "\t" +
+                                   rs.getString("customer_add1") + "\t" +
+                                   rs.getString("customer_add2"));
+                    receiverNameValue.setText(rs.getString("customer_name"));
+                    receiverAddressvalue.setText(rs.getString("customer_add1")+rs.getString("customer_add2"));
+                    receiverMobileValue.setText(rs.getString("customer_mobileno"));
+                    receiverEmailValue.setText(rs.getString("customer_emailid"));
+                    receiverGSTValue.setText(rs.getString("customer_gstno"));
+                    
+            }
+                    receiverNameValue.setText(rs.getString(""));
+                    receiverAddressvalue.setText(rs.getString(""));
+                    JOptionPane.showMessageDialog(null, "Record Inserted Sucessfully....");
+                
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+              
+    }//GEN-LAST:event_receiverSearchCustomerBtnActionPerformed
+
+    private void consigneeMobileSearchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consigneeMobileSearchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consigneeMobileSearchTextFieldActionPerformed
+
+    private void consigneeSearchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consigneeSearchCustomerBtnActionPerformed
+        // TODO add your handling code here:
+          try{
+            String query  = "select * from customer_master where customer_mobileno = ?";
+            con =  DBConnection.getCon();
+            pst  = con.prepareStatement(query);
+            pst.setString(1,consigneeMobileSearchTextField.getText());
+            rs = pst.executeQuery();
+        
+            // loop through the result set
+            while (rs.next() && rs!=null) {
+                System.out.println(rs.getInt("customer_no") +  "\t" + 
+                                   rs.getString("customer_name") + "\t" +
+                                   rs.getString("customer_add1") + "\t" +
+                        
+                                   rs.getString("customer_add2"));
+                    consigneeNamevalue.setText(rs.getString("customer_name"));
+                    consigneeAddressValue.setText(rs.getString("customer_add1")+rs.getString("customer_add2"));
+                    consigneeMobileValue.setText(rs.getString("customer_mobileno"));
+                    consigneeEmailValue.setText(rs.getString("customer_gstno"));
+            }
+                    receiverNameValue.setText(rs.getString(""));
+                    receiverAddressvalue.setText(rs.getString(""));
+                    JOptionPane.showMessageDialog(null, "Record Inserted Sucessfully....");
+                
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_consigneeSearchCustomerBtnActionPerformed
+
     private DefaultTableModel dtm;  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddProductPanel;
@@ -1091,6 +1232,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel SGSTLabel;
     private javax.swing.JTextField SGSTTextField;
     private javax.swing.JLabel SGSTValueLabel;
+    private javax.swing.JLabel SearchMobileLabel;
     private javax.swing.JButton addProductButton;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField cgstTextField;
@@ -1101,9 +1243,11 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField consigneeEmailValue;
     private javax.swing.JLabel consigneeGSTLabel;
     private javax.swing.JTextField consigneeGSTValue;
+    private javax.swing.JTextField consigneeMobileSearchTextField;
     private javax.swing.JTextField consigneeMobileValue;
     private javax.swing.JLabel consigneeMobilelabel;
     private javax.swing.JTextField consigneeNamevalue;
+    private javax.swing.JButton consigneeSearchCustomerBtn;
     private javax.swing.JLabel consigneeStateLabel;
     private javax.swing.JTextField consigneeStatevalue;
     private javax.swing.JLabel consigneelabel;
@@ -1120,6 +1264,7 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel headerTitlePanel;
     private javax.swing.JLabel invoiceSeriaValue;
     private javax.swing.JLabel invoiceSerialLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
@@ -1157,8 +1302,10 @@ public class InvoiceTaxForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField receiverMobileValue;
     private javax.swing.JLabel receiverNameLabel;
     private javax.swing.JTextField receiverNameValue;
+    private javax.swing.JButton receiverSearchCustomerBtn;
     private javax.swing.JTextField receiverStateValue;
     private javax.swing.JLabel receiverStatelabel;
+    private javax.swing.JTextField receivermobileNoSearchTextField;
     private javax.swing.JLabel recieverDetailsLabel;
     private javax.swing.JButton saveInvoiceBtn;
     private javax.swing.JTextField supplyPlaceValue;

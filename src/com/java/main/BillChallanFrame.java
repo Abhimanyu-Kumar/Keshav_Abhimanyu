@@ -305,8 +305,9 @@ public class BillChallanFrame extends javax.swing.JInternalFrame {
         productList.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         productList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cake", "Chocolate", "Flower", "Gift Items" }));
 
-        addProductBtn.setBackground(new java.awt.Color(51, 51, 255));
+        addProductBtn.setBackground(new java.awt.Color(255, 255, 255));
         addProductBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addProductBtn.setForeground(new java.awt.Color(51, 51, 51));
         addProductBtn.setText("Add");
         addProductBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -720,6 +721,7 @@ public class BillChallanFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         List list = new ArrayList();
+        
         
         
        

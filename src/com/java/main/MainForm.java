@@ -171,6 +171,22 @@ public class MainForm extends JFrame {
 		jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 		jPanel1.setBorder(new MatteBorder(null));
 		jPanel1.setName("jPanel1"); // NOI18N
+                
+//                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background.jpg"))); // NOI18N
+//        jLabel1.setLabelFor(jLabel1);
+//        jLabel1.setName("jLabel1"); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1368, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+                
 
 		headerPanel.setBackground(new java.awt.Color(204, 255, 204));
 		headerPanel.setBorder(new MatteBorder(null));
@@ -233,14 +249,19 @@ public class MainForm extends JFrame {
 		jDesktopPane1.add(compMobileLabel, JLayeredPane.DEFAULT_LAYER);
 		jDesktopPane1.add(compWebsiteLabel, JLayeredPane.DEFAULT_LAYER);
 		
-		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 1368, Short.MAX_VALUE));
-		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE));
-
-		jPanel1.setBounds(0, 0, 1370, 750);
+//                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("F:\\NetbeansWorkspace\\BillingManagementSystem\\background.jpg"))); // NOI18N
+//                jLabel1.setLabelFor(jLabel1);
+//                jLabel1.setName("jLabel1"); 
+//                
+//		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+//		jPanel1.setLayout(jPanel1Layout);
+//		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//				.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE));
+//		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//				.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE));
+                
+                
+		jPanel1.setBounds(0, 0, 0, 0);
 		jDesktopPane1.add(jPanel1, JLayeredPane.DEFAULT_LAYER);
 
 		// jDesktopPane1.add(jPanel1);
